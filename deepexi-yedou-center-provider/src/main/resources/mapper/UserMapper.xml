@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.deepexi.yedou.mapper.UserMapper">
+    <resultMap type="com.deepexi.yedou.domain.dto.UserDto" id="UserDtoResult">
+        <result property="id" column="id" />
+        <result property="createdBy" column="created_by" />
+        <result property="createdAt" column="created_at" />
+        <result property="updatedBy" column="updated_by" />
+        <result property="updatedAt" column="updated_at" />
+        <result property="name" column="name" />
+    </resultMap>
+    <select id="findList" resultType="com.deepexi.yedou.domain.eo.User">
+        SELECT * FROM user WHERE 1=1
+    </select>
+
+    <update id="deleteByIds">
+        UPDATE user set dr=1 where id in
+        <foreach collection="ids" index="index" item="id" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </update>
+</mapper>
